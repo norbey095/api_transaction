@@ -12,12 +12,12 @@ import lombok.RequiredArgsConstructor;
 public class SupplyAdapter implements ISupplyPersistencePort {
 
     private final ISupplyRepository supplyRepository;
-    private final ISupplyEntityMapper ISupplyEntityMapper;
+    private final ISupplyEntityMapper supplyEntityMapper;
 
 
     @Override
     public void saveSupply(ArticleUpdate articleUpdate) {
-        SupplyEntity supplyEntity = ISupplyEntityMapper.articleUpdateToSupplyEntity(articleUpdate);
+        SupplyEntity supplyEntity = supplyEntityMapper.articleUpdateToSupplyEntity(articleUpdate);
         supplyRepository.save(supplyEntity);
     }
 }

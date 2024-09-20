@@ -1,7 +1,7 @@
 package com.emazon.api_transaction.infraestructure.input.rest;
 
 import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
-import com.emazon.api_transaction.application.dto.ResponseSuccessDto;
+import com.emazon.api_transaction.application.dto.ResponseStockDto;
 import com.emazon.api_transaction.application.handler.ISupplyHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -31,7 +31,7 @@ public class SupplyController {
     })
     @PreAuthorize("hasRole('ROLE_AUX_WAREHOUSE')")
     @PostMapping("/")
-    public ResponseEntity<ResponseSuccessDto> addSupply(
+    public ResponseEntity<ResponseStockDto> addSupply(
             @RequestBody ArticleUpdateRequestDto request
     ) {
         return  ResponseEntity.ok(supplyHandler.addSupply(request));

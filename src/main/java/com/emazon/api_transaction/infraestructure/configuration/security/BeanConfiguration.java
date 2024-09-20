@@ -1,4 +1,4 @@
-package com.emazon.api_transaction.infraestructure.configuration;
+package com.emazon.api_transaction.infraestructure.configuration.security;
 
 import com.emazon.api_transaction.domain.api.ISupplyServicePort;
 import com.emazon.api_transaction.domain.spi.IAthenticationPersistencePort;
@@ -34,8 +34,9 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public ISupplyStockPersistencePort supplyStockPersistencePort(IFeignClientStock feignClientStock) {
-        return new SupplyStockAdapter(feignClientStock);
+    public ISupplyStockPersistencePort supplyStockPersistencePort(IFeignClientStock feignClientStock
+            ,ISupplyEntityMapper supplyEntityMapper) {
+        return new SupplyStockAdapter(feignClientStock,supplyEntityMapper);
     }
 
     @Bean

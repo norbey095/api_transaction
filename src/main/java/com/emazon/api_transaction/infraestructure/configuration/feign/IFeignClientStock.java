@@ -1,6 +1,7 @@
 package com.emazon.api_transaction.infraestructure.configuration.feign;
 
 import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
+import com.emazon.api_transaction.application.dto.ResponseStockDto;
 import com.emazon.api_transaction.infraestructure.util.ConstantsConfigurations;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -15,6 +16,6 @@ public interface IFeignClientStock {
 
 
     @PostMapping(value = ConstantsConfigurations.URL_STOCK_UPDATE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    void updateArticle(@RequestBody ArticleUpdateRequestDto articleUpdateRequestDto);
+    ResponseStockDto updateArticle(@RequestBody ArticleUpdateRequestDto articleUpdateRequestDto);
 
 }
