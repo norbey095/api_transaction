@@ -74,4 +74,17 @@ jacocoTestReport {
 		html.required.set(true)
 		csv.required.set(false)
 	}
+
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					'**/com/emazon/api_transaction/infraestructure/util*',
+					'**/com/emazon/api_transaction/ApiTransactionApplication*',
+					'**/com/emazon/api_transaction/infraestructure/configuration/feign*',
+					'**/com/emazon/api_transaction/infraestructure/configuration/security/UserDetailService*',
+					'**/com/emazon/api_transaction/infraestructure/configuration/util*',
+					'**/com/emazon/api_transaction/infraestructure/configuration/security/filter*'
+			])
+		}))
+	}
 }

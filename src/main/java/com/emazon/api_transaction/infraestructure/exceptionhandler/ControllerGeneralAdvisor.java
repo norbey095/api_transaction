@@ -3,8 +3,6 @@ package com.emazon.api_transaction.infraestructure.exceptionhandler;
 import com.emazon.api_transaction.domain.exception.CredentialsException;
 import com.emazon.api_transaction.domain.exception.ErrorStockException;
 import com.emazon.api_transaction.domain.exception.NoDataFoundException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,28 +63,16 @@ public class ControllerGeneralAdvisor {
 
     @ExceptionHandler(FeignException.FeignClientException.class)
     public ResponseEntity<ExceptionResponse> handleFeignClientException(FeignException.FeignClientException exception) {
-        try {
-            return ResponseEntity.status(HttpStatus.CONFLICT).
-                    body(new ExceptionResponse(ConstantsException.STOCK_CONFLICT, HttpStatus.CONFLICT.toString()));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ExceptionResponse(ConstantsException.SERVICE_NOT_AVAILABLE,
-                            HttpStatus.INTERNAL_SERVER_ERROR.toString()));
-        }
+        return ResponseEntity.status(HttpStatus.CONFLICT).
+                body(new ExceptionResponse(ConstantsException.STOCK_CONFLICT, HttpStatus.CONFLICT.toString()));
     }
 
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<ExceptionResponse> handleFeignException(FeignException exception) {
-        try {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).
+                body(new ExceptionResponse(ConstantsException.SERVICE_NOT_AVAILABLE
+                        , HttpStatus.SERVICE_UNAVAILABLE.toString()));
 
-            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).
-                    body(new ExceptionResponse(ConstantsException.SERVICE_NOT_AVAILABLE
-                            , HttpStatus.SERVICE_UNAVAILABLE.toString()));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ExceptionResponse(ConstantsException.SERVICE_NOT_AVAILABLE,
-                            HttpStatus.INTERNAL_SERVER_ERROR.toString()));
-        }
     }
 
     @ExceptionHandler(ErrorStockException.class)

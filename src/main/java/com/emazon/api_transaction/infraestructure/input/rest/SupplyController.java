@@ -23,11 +23,12 @@ public class SupplyController {
 
     private final ISupplyHandler supplyHandler;
 
-    @Operation(summary = "Authenticacion User",
-            description = "Authenticacion User")
+    @Operation(summary = "Add Supply",
+            description = "Add Supply")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Authenticated user", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Incorrect login information", content = @Content),
+            @ApiResponse(responseCode = "201", description = "Successfully added", content = @Content),
+            @ApiResponse(responseCode = "409", description = "Error with the request", content = @Content),
+            @ApiResponse(responseCode = "503", description = "Service not available", content = @Content),
     })
     @PreAuthorize("hasRole('ROLE_AUX_WAREHOUSE')")
     @PostMapping("/")
