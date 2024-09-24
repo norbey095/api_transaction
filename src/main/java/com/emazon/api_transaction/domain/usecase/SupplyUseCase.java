@@ -29,17 +29,26 @@ public class SupplyUseCase implements ISupplyServicePort {
     }
 
     @Override
-    public void saveSupply(ArticleUpdate articleUpdate) {
-        if (!supplyStockPersistencePort.existArticleById(articleUpdate.getArticleId())) {
-            throw new NoDataFoundException();
-        }
+    public void addSupply(ArticleUpdate articleUpdate) {
+        validateArticleID(articleUpdate.getArticleId());
         articleUpdate.setUserEmail(authenticationPersistencePort.getUserName());
         articleUpdate.setUpdateDate(LocalDate.now());
+        updateQuantityInStock(articleUpdate.getArticleId(),articleUpdate.getQuantity());
+
+        supplyPersistencePort.saveSupply(articleUpdate);
+    }
+
+    private void validateArticleID(Integer id){
+        if (!supplyStockPersistencePort.existArticleById(id)) {
+            throw new NoDataFoundException();
+        }
+    }
+
+    private void updateQuantityInStock(Integer id,Integer quantity){
         ResponseStock responseStock = supplyStockPersistencePort
-                .updateQuantityArticle(articleUpdate.getArticleId(),articleUpdate.getQuantity());
+                .updateQuantityArticle(id,quantity);
         if(responseStock == null || !responseStock.getStatus().equals(HttpStatus.CREATED.toString())){
             throw new ErrorStockException();
         }
-        supplyPersistencePort.saveSupply(articleUpdate);
     }
 }

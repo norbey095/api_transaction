@@ -1,6 +1,5 @@
 package com.emazon.api_transaction.infraestructure.output.adapter;
 
-
 import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.domain.model.ResponseStock;
 import com.emazon.api_transaction.domain.spi.ISupplyStockPersistencePort;
@@ -17,7 +16,7 @@ public class SupplyStockAdapter implements ISupplyStockPersistencePort {
 
     @Override
     public boolean existArticleById(Integer articleId) {
-        return feignClientStock.existById(articleId);
+        return feignClientStock.existById(articleId) != null;
     }
 
     @Override

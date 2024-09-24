@@ -23,7 +23,7 @@ public class SupplyHandler implements ISupplyHandler {
     @Override
     public ResponseStockDto addSupply(ArticleUpdateRequestDto articleUpdateRequestDto) {
         ArticleUpdate articleUpdate = supplyMapper.articleUpdateRequestDtoToArticleUpdate(articleUpdateRequestDto);
-        supplyServicePort.saveSupply(articleUpdate);
-        return new ResponseStockDto(ConstantsDto.UPDATE_CORRECT, HttpStatus.CREATED.toString());
+        supplyServicePort.addSupply(articleUpdate);
+        return new ResponseStockDto(ConstantsDto.UPDATE_CORRECT, HttpStatus.OK.toString());
     }
 }

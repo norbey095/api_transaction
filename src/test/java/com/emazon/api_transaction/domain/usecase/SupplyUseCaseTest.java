@@ -56,7 +56,7 @@ class SupplyUseCaseTest {
                 .thenReturn(new ResponseStock("", HttpStatus.CREATED.toString()));
 
 
-        supplyUseCase.saveSupply(article);
+        supplyUseCase.addSupply(article);
 
         Mockito.verify(supplyStockPersistencePort, Mockito.times(ConstantsDomain.CALLED_1)).
                 existArticleById(article.getArticleId());
@@ -72,7 +72,7 @@ class SupplyUseCaseTest {
                .thenReturn(false);
 
         Assertions.assertThrows(NoDataFoundException.class, () -> {
-            supplyUseCase.saveSupply(article);
+            supplyUseCase.addSupply(article);
         });
 
         Mockito.verify(supplyStockPersistencePort, Mockito.times(ConstantsDomain.CALLED_1))
@@ -89,7 +89,7 @@ class SupplyUseCaseTest {
                 .thenReturn(new ResponseStock("", HttpStatus.CONFLICT.toString()));
 
         Assertions.assertThrows(ErrorStockException.class, () -> {
-            supplyUseCase.saveSupply(article);
+            supplyUseCase.addSupply(article);
         });
 
         Mockito.verify(supplyStockPersistencePort, Mockito.times(ConstantsDomain.CALLED_1)).
@@ -110,7 +110,7 @@ class SupplyUseCaseTest {
                 .thenReturn(null);
 
         Assertions.assertThrows(ErrorStockException.class, () -> {
-            supplyUseCase.saveSupply(article);
+            supplyUseCase.addSupply(article);
         });
 
         Mockito.verify(supplyStockPersistencePort, Mockito.times(ConstantsDomain.CALLED_1)).
