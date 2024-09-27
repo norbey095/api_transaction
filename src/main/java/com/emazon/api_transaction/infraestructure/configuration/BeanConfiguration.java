@@ -1,4 +1,4 @@
-package com.emazon.api_transaction.infraestructure.configuration.security;
+package com.emazon.api_transaction.infraestructure.configuration;
 
 import com.emazon.api_transaction.domain.api.ISupplyServicePort;
 import com.emazon.api_transaction.domain.spi.IAthenticationPersistencePort;

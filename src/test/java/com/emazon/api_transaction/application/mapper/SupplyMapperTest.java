@@ -9,6 +9,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 class SupplyMapperTest {

@@ -1,5 +1,6 @@
 package com.emazon.api_transaction.infraestructure.output.adapter;
 
+import com.emazon.api_transaction.application.dto.ArticleResponseDto;
 import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.dto.ResponseStockDto;
 import com.emazon.api_transaction.domain.model.ResponseStock;
@@ -31,7 +32,8 @@ class SupplyStockAdapterTest {
 
     @Test
     void testExistArticleById() {
-        Mockito.when(feignClientStock.existById(ConstantsInfraestructure.ARTICLE_ID)).thenReturn(true);
+        Mockito.when(feignClientStock.existById(ConstantsInfraestructure.ARTICLE_ID))
+                .thenReturn(new ArticleResponseDto());
 
         supplyStockAdapter.existArticleById(ConstantsInfraestructure.ARTICLE_ID);
 

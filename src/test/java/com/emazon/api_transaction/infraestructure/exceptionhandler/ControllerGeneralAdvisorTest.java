@@ -3,6 +3,7 @@ package com.emazon.api_transaction.infraestructure.exceptionhandler;
 import com.emazon.api_transaction.application.handler.ISupplyHandler;
 import com.emazon.api_transaction.domain.exception.CredentialsException;
 import com.emazon.api_transaction.domain.exception.ErrorStockException;
+import com.emazon.api_transaction.infraestructure.util.ConstantsConfigurations;
 import feign.FeignException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,27 +56,28 @@ class ControllerGeneralAdvisorTest {
 
         Assertions.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.NO_DATA_FOUND_EXCEPTION_MESSAGE, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.NO_DATA_FOUND_EXCEPTION_MESSAGE
+                , response.getBody().getMessage());
     }
 
     @Test
     void testHandleAccessDeniedException() {
         ResponseEntity<ExceptionResponse> response = advisor.handleAccessDeniedException(
-                new AccessDeniedException(ConstantsException.ACCESS_DENIED));
+                new AccessDeniedException(ConstantsConfigurations.ACCESS_DENIED));
 
         Assertions.assertEquals(HttpStatus.FORBIDDEN, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.ACCESS_DENE, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.ACCESS_DENE, response.getBody().getMessage());
     }
 
     @Test
     void testHandleBadCredentialsException() {
         ResponseEntity<ExceptionResponse> response = advisor.handleBadCredentialsException(
-                new BadCredentialsException(ConstantsException.BAD_CREDENTIALS));
+                new BadCredentialsException(ConstantsConfigurations.BAD_CREDENTIALS));
 
         Assertions.assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.INCORRECT_DATA, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.INCORRECT_DATA, response.getBody().getMessage());
     }
 
     @Test
@@ -85,7 +87,7 @@ class ControllerGeneralAdvisorTest {
 
         Assertions.assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.INCORRECT_DATA, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.INCORRECT_DATA, response.getBody().getMessage());
     }
 
     @Test
@@ -94,28 +96,28 @@ class ControllerGeneralAdvisorTest {
 
         Assertions.assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.ERROR_STOCK, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.ERROR_STOCK, response.getBody().getMessage());
     }
 
     @Test
     void testHandleFeignClientException() {
-        Mockito.when(feignClientException.getMessage()).thenReturn(ConstantsException.CLIENT_EXCEPTION);
+        Mockito.when(feignClientException.getMessage()).thenReturn(ConstantsConfigurations.CLIENT_EXCEPTION);
 
         ResponseEntity<ExceptionResponse> response = advisor.handleFeignClientException(feignClientException);
 
         Assertions.assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.STOCK_CONFLICT, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.STOCK_CONFLICT, response.getBody().getMessage());
     }
 
     @Test
     void testHandleFeignException() {
-        Mockito.when(feignException.getMessage()).thenReturn(ConstantsException.FEIGN_EXCEPTION);
+        Mockito.when(feignException.getMessage()).thenReturn(ConstantsConfigurations.FEIGN_EXCEPTION);
 
         ResponseEntity<ExceptionResponse> response = advisor.handleFeignException(feignException);
 
         Assertions.assertEquals(HttpStatus.SERVICE_UNAVAILABLE, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
-        Assertions.assertEquals(ConstantsException.SERVICE_NOT_AVAILABLE, response.getBody().getMessage());
+        Assertions.assertEquals(ConstantsConfigurations.SERVICE_NOT_AVAILABLE, response.getBody().getMessage());
     }
 }
