@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -25,5 +26,10 @@ public class SalesHandler implements ISalesHandler {
     public ResponseStockDto saveSales(List<SalesRequestDto> salesRequestDto) {
         salesServicePort.saveSales(salesMapper.salesRequestDtoListToSalesRequestList(salesRequestDto));
         return new ResponseStockDto(ConstantsDto.SAVE_CORRECT, HttpStatus.OK.toString());
+    }
+
+    @Override
+    public void deleteRegistry(String userName, LocalDateTime buyDate) {
+        salesServicePort.deleteRegistry(userName, buyDate);
     }
 }

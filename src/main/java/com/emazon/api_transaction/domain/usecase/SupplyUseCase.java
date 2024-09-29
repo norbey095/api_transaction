@@ -8,7 +8,7 @@ import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import com.emazon.api_transaction.domain.model.ResponseStock;
 import com.emazon.api_transaction.domain.spi.IAthenticationPersistencePort;
 import com.emazon.api_transaction.domain.spi.ISupplyPersistencePort;
-import com.emazon.api_transaction.domain.spi.ISupplyStockPersistencePort;
+import com.emazon.api_transaction.domain.spi.IClientStockPersistencePort;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDate;
@@ -17,11 +17,11 @@ import java.time.LocalDate;
 public class SupplyUseCase implements ISupplyServicePort {
 
     private final ISupplyPersistencePort supplyPersistencePort;
-    private final ISupplyStockPersistencePort supplyStockPersistencePort;
+    private final IClientStockPersistencePort supplyStockPersistencePort;
     private final IAthenticationPersistencePort authenticationPersistencePort;
 
     public SupplyUseCase(ISupplyPersistencePort supplyPersistencePort,
-                         ISupplyStockPersistencePort supplyStockPersistencePort,
+                         IClientStockPersistencePort supplyStockPersistencePort,
                          IAthenticationPersistencePort authenticationPersistencePort) {
         this.supplyPersistencePort = supplyPersistencePort;
         this.supplyStockPersistencePort = supplyStockPersistencePort;

@@ -23,7 +23,7 @@ class SupplyStockAdapterTest {
 
     @Spy
     @InjectMocks
-    private SupplyStockAdapter supplyStockAdapter;
+    private ClientStockAdapter supplyStockAdapter;
 
     @BeforeEach
     public void setup() {

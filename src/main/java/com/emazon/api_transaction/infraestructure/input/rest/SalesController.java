@@ -11,11 +11,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -40,5 +38,13 @@ public class SalesController {
             @Valid @RequestBody List<SalesRequestDto> transactionRequest
     ) {
         return  ResponseEntity.ok(salesHandler.saveSales(transactionRequest));
+    }
+
+    @DeleteMapping("/{userName}/{buyDate}")
+    public ResponseEntity<Void> deleteRegistry(
+            @PathVariable String userName, @PathVariable  LocalDateTime buyDate
+    ) {
+        salesHandler.deleteRegistry(userName, buyDate);
+        return ResponseEntity.ok().build();
     }
 }

@@ -14,7 +14,7 @@ public class SalesRequestDto {
     private Integer id;
     private String  email;
     private LocalDateTime buyDate;
-    private Integer idArticle;
+    private Integer articleId;
     private Integer quantity;
 
 }

@@ -2,23 +2,23 @@ package com.emazon.api_transaction.domain.model;
 
 import java.time.LocalDateTime;
 
-public class SalesRequest {
+public class Sales {
 
     private Integer id;
     private String  email;
     private LocalDateTime buyDate;
-    private Integer idArticle;
+    private Integer articleId;
     private Integer quantity;
 
-    public SalesRequest() {
+    public Sales() {
     }
 
-    public SalesRequest(Integer id, String email, LocalDateTime buyDate, Integer idArticle, Integer quantity) {
-        this.id = id;
-        this.email = email;
-        this.buyDate = buyDate;
-        this.idArticle = idArticle;
+    public Sales(Integer quantity, Integer articleId, LocalDateTime buyDate, String email, Integer id) {
         this.quantity = quantity;
+        this.articleId = articleId;
+        this.buyDate = buyDate;
+        this.email = email;
+        this.id = id;
     }
 
     public Integer getId() {
@@ -45,12 +45,12 @@ public class SalesRequest {
         this.buyDate = buyDate;
     }
 
-    public Integer getIdArticle() {
-        return idArticle;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setIdArticle(Integer idArticle) {
-        this.idArticle = idArticle;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public Integer getQuantity() {

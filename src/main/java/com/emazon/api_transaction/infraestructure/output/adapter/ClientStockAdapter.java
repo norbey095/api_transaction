@@ -4,8 +4,8 @@ import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
 import com.emazon.api_transaction.application.dto.stock.SubtractArticleRequestDto;
 import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.domain.model.ResponseStock;
-import com.emazon.api_transaction.domain.model.SalesRequest;
-import com.emazon.api_transaction.domain.spi.ISupplyStockPersistencePort;
+import com.emazon.api_transaction.domain.model.Sales;
+import com.emazon.api_transaction.domain.spi.IClientStockPersistencePort;
 import com.emazon.api_transaction.infraestructure.configuration.feign.IFeignClientStock;
 import com.emazon.api_transaction.infraestructure.output.mapper.ISupplyEntityMapper;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class SupplyStockAdapter implements ISupplyStockPersistencePort {
+public class ClientStockAdapter implements IClientStockPersistencePort {
 
     private final IFeignClientStock feignClientStock;
     private final ISupplyEntityMapper supplyEntityMapper;
@@ -33,7 +33,7 @@ public class SupplyStockAdapter implements ISupplyStockPersistencePort {
     }
 
     @Override
-    public ResponseStock subtractQuantityArticle(List<SalesRequest> salesRequest) {
+    public ResponseStock subtractQuantityArticle(List<Sales> salesRequest) {
         List<SubtractArticleRequestDto> subtractArticleRequest = supplyEntityMapper.
                 salesRequestsListToSubtractArticleRequestDtoList(salesRequest);
 

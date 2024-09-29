@@ -1,15 +1,21 @@
 package com.emazon.api_transaction.infraestructure.configuration;
 
+import com.emazon.api_transaction.domain.api.ISalesServicePort;
 import com.emazon.api_transaction.domain.api.ISupplyServicePort;
 import com.emazon.api_transaction.domain.spi.IAthenticationPersistencePort;
+import com.emazon.api_transaction.domain.spi.ISalesPersistencePort;
 import com.emazon.api_transaction.domain.spi.ISupplyPersistencePort;
-import com.emazon.api_transaction.domain.spi.ISupplyStockPersistencePort;
+import com.emazon.api_transaction.domain.spi.IClientStockPersistencePort;
+import com.emazon.api_transaction.domain.usecase.SalesUseCase;
 import com.emazon.api_transaction.domain.usecase.SupplyUseCase;
 import com.emazon.api_transaction.infraestructure.configuration.feign.IFeignClientStock;
 import com.emazon.api_transaction.infraestructure.output.adapter.AuthenticationAdapter;
+import com.emazon.api_transaction.infraestructure.output.adapter.SalesAdapter;
 import com.emazon.api_transaction.infraestructure.output.adapter.SupplyAdapter;
-import com.emazon.api_transaction.infraestructure.output.adapter.SupplyStockAdapter;
+import com.emazon.api_transaction.infraestructure.output.adapter.ClientStockAdapter;
+import com.emazon.api_transaction.infraestructure.output.mapper.ISalesEntityMapper;
 import com.emazon.api_transaction.infraestructure.output.mapper.ISupplyEntityMapper;
+import com.emazon.api_transaction.infraestructure.output.repository.ISalesRepository;
 import com.emazon.api_transaction.infraestructure.output.repository.ISupplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +27,8 @@ public class BeanConfiguration {
 
     private final ISupplyRepository supplyRepository;
     private final ISupplyEntityMapper supplyEntityMapper;
+    private final ISalesRepository salesRepository;
+    private final ISalesEntityMapper salesEntityMapper;
 
 
     @Bean
@@ -34,16 +42,28 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public ISupplyStockPersistencePort supplyStockPersistencePort(IFeignClientStock feignClientStock
-            ,ISupplyEntityMapper supplyEntityMapper) {
-        return new SupplyStockAdapter(feignClientStock,supplyEntityMapper);
+    public IClientStockPersistencePort supplyStockPersistencePort(IFeignClientStock feignClientStock
+            , ISupplyEntityMapper supplyEntityMapper) {
+        return new ClientStockAdapter(feignClientStock,supplyEntityMapper);
     }
 
     @Bean
     public ISupplyServicePort supplyServicePort(ISupplyPersistencePort supplyPersistencePort,
-                                                ISupplyStockPersistencePort supplyStockPersistencePort,
+                                                IClientStockPersistencePort supplyStockPersistencePort,
                                                 IAthenticationPersistencePort authenticationPersistencePort) {
         return new SupplyUseCase(supplyPersistencePort, supplyStockPersistencePort,authenticationPersistencePort);
+    }
+
+    @Bean
+    public ISalesServicePort salesServicePort(ISalesPersistencePort salesPersistencePort,
+                                              IClientStockPersistencePort supplyStockPersistencePort,
+                                              IAthenticationPersistencePort authenticationPersistencePort) {
+        return new SalesUseCase(salesPersistencePort, supplyStockPersistencePort,authenticationPersistencePort);
+    }
+
+    @Bean
+    public ISalesPersistencePort salesPersistencePort() {
+        return new SalesAdapter(salesRepository, salesEntityMapper);
     }
 
 }
