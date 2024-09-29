@@ -1,7 +1,7 @@
 package com.emazon.api_transaction.infraestructure.input.rest;
 
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
-import com.emazon.api_transaction.application.dto.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.handler.ISupplyHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/supply")
+@RequestMapping("/transaction/supply")
 @RequiredArgsConstructor
 public class SupplyController {
 

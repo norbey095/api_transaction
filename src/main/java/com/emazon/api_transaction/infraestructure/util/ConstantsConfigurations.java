@@ -9,6 +9,7 @@ public class ConstantsConfigurations {
     public static final String URL_STOCK_PORT = "http://localhost:9090";
     public static final String STOCK = "stock";
     public static final String URL_STOCK_UPDATE= "/stock/article/update";
+    public static final String URL_STOCK_SUBTRACT= "/stock/article/subtract";
     public static final String URL_STOCK_ARTICLEID = "/stock/article/{articleId}";
     public static final String BEARER = "Bearer ";
     public static final Integer SEVEN_LETTERS = 7;
