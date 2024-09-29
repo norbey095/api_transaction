@@ -1,4 +1,4 @@
-package com.emazon.api_transaction.application.dto;
+package com.emazon.api_transaction.application.dto.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +16,5 @@ public class SalesRequestDto {
     private LocalDateTime buyDate;
     private Integer idArticle;
     private Integer quantity;
+
 }

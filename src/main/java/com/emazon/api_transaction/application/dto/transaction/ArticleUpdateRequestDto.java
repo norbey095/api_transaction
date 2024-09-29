@@ -1,4 +1,4 @@
-package com.emazon.api_transaction.application.dto;
+package com.emazon.api_transaction.application.dto.transaction;
 
 import com.emazon.api_transaction.application.util.ConstantsDto;
 import jakarta.validation.constraints.Min;

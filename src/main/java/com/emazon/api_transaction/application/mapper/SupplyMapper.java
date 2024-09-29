@@ -1,6 +1,6 @@
 package com.emazon.api_transaction.application.mapper;
 
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

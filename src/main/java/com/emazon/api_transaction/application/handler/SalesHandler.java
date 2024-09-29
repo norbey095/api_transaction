@@ -1,11 +1,16 @@
 package com.emazon.api_transaction.application.handler;
 
-import com.emazon.api_transaction.application.dto.SalesRequestDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.transaction.SalesRequestDto;
 import com.emazon.api_transaction.application.mapper.SalesMapper;
+import com.emazon.api_transaction.application.util.ConstantsDto;
 import com.emazon.api_transaction.domain.api.ISalesServicePort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -17,7 +22,8 @@ public class SalesHandler implements ISalesHandler {
     private final SalesMapper salesMapper;
 
     @Override
-    public void saveSales(SalesRequestDto salesRequestDto) {
-        salesServicePort.saveSales(salesMapper.salesRequestDtoToSalesRequest(salesRequestDto));
+    public ResponseStockDto saveSales(List<SalesRequestDto> salesRequestDto) {
+        salesServicePort.saveSales(salesMapper.salesRequestDtoListToSalesRequestList(salesRequestDto));
+        return new ResponseStockDto(ConstantsDto.SAVE_CORRECT, HttpStatus.OK.toString());
     }
 }

@@ -1,9 +1,12 @@
 package com.emazon.api_transaction.application.handler;
 
 
-import com.emazon.api_transaction.application.dto.SalesRequestDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.transaction.SalesRequestDto;
+
+import java.util.List;
 
 public interface ISalesHandler {
 
-    void saveSales(SalesRequestDto salesRequestDto);
+    ResponseStockDto saveSales(List<SalesRequestDto> transactionRequest);
 }

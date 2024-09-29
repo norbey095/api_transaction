@@ -1,4 +1,4 @@
-package com.emazon.api_transaction.application.dto;
+package com.emazon.api_transaction.application.dto.stock;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
