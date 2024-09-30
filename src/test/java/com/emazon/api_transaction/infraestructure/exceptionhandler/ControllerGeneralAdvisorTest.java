@@ -3,6 +3,7 @@ package com.emazon.api_transaction.infraestructure.exceptionhandler;
 import com.emazon.api_transaction.application.handler.ISupplyHandler;
 import com.emazon.api_transaction.domain.exception.CredentialsException;
 import com.emazon.api_transaction.domain.exception.ErrorStockException;
+import com.emazon.api_transaction.domain.exception.PurchaseFailureException;
 import com.emazon.api_transaction.infraestructure.util.ConstantsConfigurations;
 import feign.FeignException;
 import org.junit.jupiter.api.Assertions;
@@ -119,5 +120,14 @@ class ControllerGeneralAdvisorTest {
         Assertions.assertEquals(HttpStatus.SERVICE_UNAVAILABLE, response.getStatusCode());
         Assertions.assertNotNull(response.getBody());
         Assertions.assertEquals(ConstantsConfigurations.SERVICE_NOT_AVAILABLE, response.getBody().getMessage());
+    }
+
+    @Test
+    void testHandlePurchaseFailureException() {
+        ResponseEntity<ExceptionResponse> response = advisor.handlePurchaseFailureException(new PurchaseFailureException());
+
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        Assertions.assertNotNull(response.getBody());
+        Assertions.assertEquals(ConstantsConfigurations.PURCHASE_FAILURE, response.getBody().getMessage());
     }
 }

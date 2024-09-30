@@ -7,6 +7,7 @@ public class ConstantsApplication {
     public static final Integer  QUANTITY = 1;
     public static final String EMAIL = "test@test.com";
     public static final Integer CALLED_1 = 1;
+    public static final Integer NUMBER = 0;
 
 
 

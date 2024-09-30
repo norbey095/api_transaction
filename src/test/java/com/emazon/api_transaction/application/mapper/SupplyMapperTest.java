@@ -1,5 +1,6 @@
 package com.emazon.api_transaction.application.mapper;
 
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.util.ConstantsApplication;
 import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import org.junit.jupiter.api.Assertions;

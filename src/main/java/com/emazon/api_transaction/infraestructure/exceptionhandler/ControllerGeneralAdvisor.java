@@ -3,6 +3,7 @@ package com.emazon.api_transaction.infraestructure.exceptionhandler;
 import com.emazon.api_transaction.domain.exception.CredentialsException;
 import com.emazon.api_transaction.domain.exception.ErrorStockException;
 import com.emazon.api_transaction.domain.exception.NoDataFoundException;
+import com.emazon.api_transaction.domain.exception.PurchaseFailureException;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,41 +37,41 @@ public class ControllerGeneralAdvisor {
     @ExceptionHandler(NoDataFoundException.class)
     public ResponseEntity<ExceptionResponse> handleNoDataFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
-                ConstantsException.NO_DATA_FOUND_EXCEPTION_MESSAGE
+                ConstantsExcep.NO_DATA_FOUND_EXCEPTION_MESSAGE
                 , HttpStatus.NOT_FOUND.toString()));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ExceptionResponse> handleAccessDeniedException (AccessDeniedException  exception) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionResponse(
-                ConstantsException.ACCESS_DENE,
+                ConstantsExcep.ACCESS_DENE,
                 HttpStatus.FORBIDDEN.toString()));
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ExceptionResponse> handleBadCredentialsException (BadCredentialsException  exception) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionResponse(
-                ConstantsException.INCORRECT_DATA,
+                ConstantsExcep.INCORRECT_DATA,
                 HttpStatus.UNAUTHORIZED.toString()));
     }
 
     @ExceptionHandler(CredentialsException.class)
     public ResponseEntity<ExceptionResponse> handleCredentialsException (CredentialsException  exception) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionResponse(
-                ConstantsException.INCORRECT_DATA,
+                ConstantsExcep.INCORRECT_DATA,
                 HttpStatus.UNAUTHORIZED.toString()));
     }
 
     @ExceptionHandler(FeignException.FeignClientException.class)
     public ResponseEntity<ExceptionResponse> handleFeignClientException(FeignException.FeignClientException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).
-                body(new ExceptionResponse(ConstantsException.STOCK_CONFLICT, HttpStatus.CONFLICT.toString()));
+                body(new ExceptionResponse(ConstantsExcep.STOCK_CONFLICT, HttpStatus.CONFLICT.toString()));
     }
 
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<ExceptionResponse> handleFeignException(FeignException exception) {
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).
-                body(new ExceptionResponse(ConstantsException.SERVICE_NOT_AVAILABLE
+                body(new ExceptionResponse(ConstantsExcep.SERVICE_NOT_AVAILABLE
                         , HttpStatus.SERVICE_UNAVAILABLE.toString()));
 
     }
@@ -78,8 +79,17 @@ public class ControllerGeneralAdvisor {
     @ExceptionHandler(ErrorStockException.class)
     public ResponseEntity<ExceptionResponse> handleErrorStockException(ErrorStockException  exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ExceptionResponse(
-                ConstantsException.ERROR_STOCK,
+                ConstantsExcep.ERROR_STOCK,
                 HttpStatus.CONFLICT.toString()));
     }
+
+    @ExceptionHandler(PurchaseFailureException.class)
+    public ResponseEntity<ExceptionResponse> handlePurchaseFailureException(PurchaseFailureException  exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionResponse(
+                ConstantsExcep.PURCHASE_FAILURE,
+                HttpStatus.BAD_REQUEST.toString()));
+    }
+
+
 
 }

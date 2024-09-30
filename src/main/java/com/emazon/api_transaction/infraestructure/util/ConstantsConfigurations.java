@@ -28,6 +28,7 @@ public class ConstantsConfigurations {
     public static final String BAD_CREDENTIALS = "Bad Credentials";
     public static final String CLIENT_EXCEPTION = "Client Exception";
     public static final String FEIGN_EXCEPTION = "Feign Exception";
+    public static final String PURCHASE_FAILURE = "The purchase could not be completed, please try again later.";
 
     private ConstantsConfigurations() {
 

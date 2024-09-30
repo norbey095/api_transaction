@@ -7,7 +7,6 @@ import com.emazon.api_transaction.domain.model.ResponseStock;
 import com.emazon.api_transaction.domain.model.Sales;
 import com.emazon.api_transaction.infraestructure.output.entity.SupplyEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 
