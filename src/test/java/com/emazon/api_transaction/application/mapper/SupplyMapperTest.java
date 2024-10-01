@@ -1,6 +1,6 @@
 package com.emazon.api_transaction.application.mapper;
 
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.util.ConstantsApplication;
 import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import org.junit.jupiter.api.Assertions;
@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)

@@ -1,6 +1,6 @@
 package com.emazon.api_transaction.application.handler;
 
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.mapper.SupplyMapper;
 import com.emazon.api_transaction.application.util.ConstantsApplication;
 import com.emazon.api_transaction.domain.api.ISupplyServicePort;

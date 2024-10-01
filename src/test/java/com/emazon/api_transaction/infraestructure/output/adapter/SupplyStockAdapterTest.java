@@ -1,8 +1,8 @@
 package com.emazon.api_transaction.infraestructure.output.adapter;
 
-import com.emazon.api_transaction.application.dto.ArticleResponseDto;
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
-import com.emazon.api_transaction.application.dto.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.stock.ArticleResponseDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.domain.model.ResponseStock;
 import com.emazon.api_transaction.infraestructure.configuration.feign.IFeignClientStock;
 import com.emazon.api_transaction.infraestructure.output.mapper.ISupplyEntityMapper;
@@ -23,7 +23,7 @@ class SupplyStockAdapterTest {
 
     @Spy
     @InjectMocks
-    private SupplyStockAdapter supplyStockAdapter;
+    private ClientStockAdapter supplyStockAdapter;
 
     @BeforeEach
     public void setup() {

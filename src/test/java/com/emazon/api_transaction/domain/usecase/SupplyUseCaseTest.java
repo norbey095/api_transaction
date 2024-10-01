@@ -7,7 +7,7 @@ import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import com.emazon.api_transaction.domain.model.ResponseStock;
 import com.emazon.api_transaction.domain.spi.IAthenticationPersistencePort;
 import com.emazon.api_transaction.domain.spi.ISupplyPersistencePort;
-import com.emazon.api_transaction.domain.spi.ISupplyStockPersistencePort;
+import com.emazon.api_transaction.domain.spi.IClientStockPersistencePort;
 import com.emazon.api_transaction.domain.util.ConstantsDomain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ class SupplyUseCaseTest {
     private ISupplyPersistencePort supplyPersistencePort;
 
     @Mock
-    private ISupplyStockPersistencePort supplyStockPersistencePort;
+    private IClientStockPersistencePort supplyStockPersistencePort;
 
     @Mock
     private IAthenticationPersistencePort authenticationPersistencePort;

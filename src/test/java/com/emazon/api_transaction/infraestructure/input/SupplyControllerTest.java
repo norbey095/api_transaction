@@ -1,7 +1,7 @@
 package com.emazon.api_transaction.infraestructure.input;
 
-import com.emazon.api_transaction.application.dto.ArticleUpdateRequestDto;
-import com.emazon.api_transaction.application.dto.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.transaction.ArticleUpdateRequestDto;
 import com.emazon.api_transaction.application.handler.ISupplyHandler;
 import com.emazon.api_transaction.infraestructure.util.ConstantsInfraestructure;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.time.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)

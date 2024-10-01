@@ -10,6 +10,7 @@ public class ConstantsDto {
    public static final String ID_NOT_NULL = "The id cannot be null";
    public static final int NUMBER_0 = 0;
    public static final String UPDATE_CORRECT = "The amount was updated correctly";
+    public static final String SAVE_CORRECT = "Your purchase is saved correctly";
     private ConstantsDto() {
 
     }

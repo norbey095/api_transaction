@@ -1,8 +1,10 @@
 package com.emazon.api_transaction.infraestructure.output.entity;
 
-import com.emazon.api_transaction.application.dto.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.stock.ResponseStockDto;
+import com.emazon.api_transaction.application.dto.stock.SubtractArticleRequestDto;
 import com.emazon.api_transaction.domain.model.ArticleUpdate;
 import com.emazon.api_transaction.domain.model.ResponseStock;
+import com.emazon.api_transaction.domain.model.Sales;
 import com.emazon.api_transaction.infraestructure.output.mapper.ISupplyEntityMapper;
 import com.emazon.api_transaction.infraestructure.util.ConstantsInfraestructure;
 import org.junit.jupiter.api.Assertions;
@@ -12,6 +14,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
@@ -57,5 +62,30 @@ class SupplyEntityMapperTest {
         ResponseStock responseStock = supplyEntityMapper.responseStockDtoToResponseStock(null);
 
         Assertions.assertNull(responseStock);
+    }
+
+    @Test
+    void salesRequestsListToSubtractArticleRequestDtoList() {
+        Sales sales = new Sales(ConstantsInfraestructure.ID, ConstantsInfraestructure.ARTICLE_ID
+                , LocalDateTime.now(), ConstantsInfraestructure.EMAIL,ConstantsInfraestructure.ARTICLE_ID);
+        List<Sales> salesList = new ArrayList<>();
+        salesList.add(sales);
+
+        List<SubtractArticleRequestDto> subtractArticleRequestDtos = supplyEntityMapper
+                .salesRequestsListToSubtractArticleRequestDtoList(salesList);
+
+        Assertions.assertNotNull(subtractArticleRequestDtos);
+        Assertions.assertEquals(subtractArticleRequestDtos.get(ConstantsInfraestructure.NUMBER_0)
+                .getArticleId(),sales.getArticleId());
+        Assertions.assertEquals(subtractArticleRequestDtos.get(ConstantsInfraestructure.NUMBER_0)
+                .getQuantity(), sales.getQuantity());
+    }
+
+    @Test
+    void salesRequestsListToSubtractArticleRequestDtoListNull() {
+        List<SubtractArticleRequestDto> subtractArticleRequestDtos= supplyEntityMapper
+                .salesRequestsListToSubtractArticleRequestDtoList(null);
+
+        Assertions.assertNull(subtractArticleRequestDtos);
     }
 }
